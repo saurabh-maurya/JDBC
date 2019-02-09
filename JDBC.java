@@ -27,12 +27,11 @@ public class JDBC {
         ResultSet result = null;
         try {         
             conn = (Connection) DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD);
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            result = stmt.executeQuery("SELECT * FROM mytable ");
-            
-            //System.out.println("Connection Established");
+            stmt = conn.createStatement();
+            result = stmt.executeQuery("SELECT * FROM mytable");//sql query
+            DataDisplay.display(result);
         } catch (SQLException e) {
-            //Logger.getLogger(JDBC.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(JDBC.class.getName()).log(Level.SEVERE, null, e);
             System.err.println(e);
         } finally{
             if(result != null){
